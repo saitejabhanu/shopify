@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopper</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/JavaScript">
+        let currentPosition = 0;
+        const imageWidth = 210; 
+        const visibleImages = 3;
+        const imageRow = document.getElementById("imageRow");
+    
+        function moveSlider(direction) {
+            const maxPosition = -(imageRow.children.length - visibleImages) * imageWidth;
+    
+            currentPosition += direction * imageWidth;
+    
+            if (currentPosition > 0) {
+                currentPosition = maxPosition;
+            } else if (currentPosition < maxPosition) {
+                currentPosition = 0;
+            }
+    
+            imageRow.style.transform = `translateX(${currentPosition}px)`;
+        }
+        let currentIndex = 1;
+        const images = document.querySelectorAll('.carousel-image');
+    
+        function updateActiveSlide() {
+            images.forEach((img, index) => {
+                img.classList.remove('active');
+                img.style.order = (index - currentIndex + images.length) % images.length;
+            });
+            images[currentIndex].classList.add('active');
+        }
+    
+        function moveSlide(direction) {
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            updateActiveSlide();
+        }
+    </script>
+
+
+</head>
+
+<body class="container-fluid">
+
+
+    <div class="shipping-banner bg-dark text-white text-center py-2">
+        FREE SHIPPING ON ALL DOMESTIC ORDERS $70+ | Shop now, pay later in 4 easy installments ⓘ
+    </div>
+    <div class="afterpay-info">
+        <p class="text-center"><span class="fw-bold">afterpay</span> is here! Shop now, pay later in 4 easy installments
+        </p>
+    </div>
+    <nav class="navbar navbar-expand-lg text-dark">
+        <div class="container-fluid d-flex align-items-center justify-content-between" id="navs">
+
+
+            <div class="d-flex align-items-center">
+                <a class="bi bi-search fs-5 nav-link text-dark"></a>
+            </div>
+
+
+            <div class="navbar-brand text-dark fw-bold fs-1 mx-auto ">The [ph]ix</div>
+
+            <div class="d-flex align-items-center">
+                <a class="bi bi-person fs-5 nav-link text-dark mx-2">ACCOUNT</a>
+                <a id="cart" class="bi bi-cart4 fs-5 nav-link text-dark mx-2">CART
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <header>
+        <nav class="navbar navbar-expand-lg text-dark">
+            <div class="container-fluid d-flex align-items-center justify-content-between" id="navs">
+                <div>
+                    <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#menu">
+                        <span class="navbar-toggler-icon text-light"></span>
+                    </button>
+                </div>
+
+
+                <div class="collapse navbar-collapse justify-content-between" id="menu">
+                    <ul class="navbar-nav align-items-end mx-auto" id="center">
+
+                        <li class="nav-item my-2 mx-2 mx-auto"><a class="nav-link text-dark fw-bold">FACIAL SKINCARE</a>
+                        </li>
+                        <li class="nav-item my-2 mx-2 mx-auto"><a class="nav-link text-dark fw-bold">BODY CARE</a></li>
+                        <li class="nav-item my-2 mx-2 mx-auto"><a class="nav-link text-dark fw-bold">BLOGS</a></li>
+                        <li class="nav-item my-2 mx-2 mx-auto"><a class="nav-link text-dark fw-bold">SKIN QUIZ</a></li>
+                        <li class="nav-item my-2 mx-2 mx-auto"><a class="nav-link text-dark fw-bold">ABOUT</a></li>
+                        <li class="nav-item my-2 mx-2 mx-auto"><a class="nav-link text-dark fw-bold">CONTACT US</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <section>
+
+        <main class="container-fluid mt-4" id="row-5">
+            <div class="row">
+                <div class="responsive-container d-flex justify-content-center align-items-center"
+                    style="height: 500px;">
+                    <img src="banner-shopify.png" class="img-fluid laptop-cover" alt="Banner Image">
+                </div>
+            </div>
+        </main>
+
+
+
+        <section class="centered-section">
+            <img src="tiktok.png" alt="Centered Image">
+        </section>
+
+
+        <main class="justify-content-around mt-5 p-4">
+            <div class="p-4">
+                <img src="skin.png" class="img-right">
+            </div>
+            <div class="text p-5">
+                <div class="first fs-3 ps-5">Thousands have loved</span></div>
+                <div class="second fw-bold fs-1 ps-5">the [pH]ix</div>
+                <div class="third ps-5 mt-3">Deeply Nourishing Formulas To Repair and Rejuvenate Your Skin</div>
+                <button class="btn-1">
+                    Shop Now<span class="bi bi-arrow-right"></span>
+                </button>
+
+            </div>
+        </main>
+
+
+
+        <div class="container mt-4">
+            <div class="content mt-5">
+                <h1>Shop by Product Type</h1>
+                <p>We’ve got clean formulas for every step in your skincare ritual..</p>
+                <button class="btn-1">
+                    Shop Now<span class="bi bi-arrow-right"></span>
+                </button>
+            </div>
+            <div class="slider mt-5 p-4">
+                <button class="prev" onclick="moveSlider(-1)">&#10094;</button>
+                <div class="image-row" id="imageRow">
+                    <img src="image1.jpg" alt="Image 1">
+                    <img src="image2.jpg" alt="Image 2">
+                    <img src="image3.jpg" alt="Image 3">
+                    <img src="image4.jpg" alt="Image 4">
+                </div>
+                <button class="next" onclick="moveSlider(1)">&#10095;</button>
+            </div>
+        </div>
+
+
+
+        <div class="text-center fs-2">Influencer Spotlight</div>
+        <div class="carousel-container">
+
+            <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+
+
+            <div class="carousel-wrapper" id="carouselWrapper">
+                <img src="image1.jpg" alt="Image 1" class="carousel-image">
+                <img src="image2.jpg" alt="Image 2" class="carousel-image active">
+                <img src="image3.jpg" alt="Image 3" class="carousel-image">
+            </div>
+
+
+            <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+        <div class="text-center mt-5 p-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo,
+            temporibus dicta ullam, voluptatibus autem dolorum, consequatur iste sit non esse sunt velit ab quia?
+            Reprehenderit nam quos officia distinctio maiores!</div>
+        <div class="text-center"><button class="fs-5 text-warning >">Shop Ariel Favourite</button></div>
+
+
+        <div>
+            <img src="terms.png" style="width: 100%;">
+        </div>
+
+
+        <div class="container my-4">
+            <div class="row">
+
+                <div class="col-lg-6 mb-4">
+                    <div class="p-3">
+                        <h2>Explore our Vita C Collection</h2>
+                        <p>Unleash the potent power of Vitamin C- your skin’s best defence against premature ageing,
+                            uneven tone and environmental stressors.</p>
+                    </div>
+                    <button class="btn-1">Shop Now -></button>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-25">
+                                <img src="image1.jpg" class="card-img-top" alt="Cleansing Vegan Oil">
+                                <div class="card-body">
+                                    <h5 class="card-title">SAVE $5</h5>
+                                    <p class="card-text">Cleansing Vegan Oil</p>
+                                    <p class="text-muted">213 Reviews</p>
+                                    <p class="fw-bold">$23.80 USD</p>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <button class="btn btn-warning">Checkout</button>
+                                    <button class="btn btn-outline-primary">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-25">
+                                <img src="image2.jpg" class="card-img-top" alt="Another Product">
+                                <div class="card-body">
+                                    <h5 class="card-title">SAVE $10</h5>
+                                    <p class="card-text">Revitalizing Serum</p>
+                                    <p class="text-muted">150 Reviews</p>
+                                    <p class="fw-bold">$29.99 USD</p>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <button class="btn btn-warning">Checkout</button>
+                                    <button class="btn btn-outline-primary">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="best-sellers">
+            <div class="text-center fs-2">the [pH]ix<span>&nbsp;BestSellers</span></div>
+            <div class="scroll-container">
+                <div class="custom-card">
+                    <img src="image1.jpg" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">SAVE $10</h5>
+                        <p class="card-text">Revitalizing Serum</p>
+                        <p class="text-muted">150 Reviews</p>
+                        <p class="fw-bold">$29.99 USD</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-warning">Checkout</button>
+                        <button class="btn btn-outline-primary">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <img src="image2.jpg" alt="Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">SAVE $10</h5>
+                        <p class="card-text">Revitalizing Serum</p>
+                        <p class="text-muted">150 Reviews</p>
+                        <p class="fw-bold">$29.99 USD</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-warning">Checkout</button>
+                        <button class="btn btn-outline-primary">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <img src="image3.jpg" alt="Image 3">
+                    <div class="card-body">
+                        <h5 class="card-title">SAVE $10</h5>
+                        <p class="card-text">Revitalizing Serum</p>
+                        <p class="text-muted">150 Reviews</p>
+                        <p class="fw-bold">$29.99 USD</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-warning">Checkout</button>
+                        <button class="btn btn-outline-primary">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <img src="image4.jpg" alt="Image 4">
+                    <div class="card-body">
+                        <h5 class="card-title">SAVE $10</h5>
+                        <p class="card-text">Revitalizing Serum</p>
+                        <p class="text-muted">150 Reviews</p>
+                        <p class="fw-bold">$29.99 USD</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-warning">Checkout</button>
+                        <button class="btn btn-outline-primary">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <img src="image1.jpg" alt="Image 5">
+                    <div class="card-body">
+                        <h5 class="card-title">SAVE $10</h5>
+                        <p class="card-text">Revitalizing Serum</p>
+                        <p class="text-muted">150 Reviews</p>
+                        <p class="fw-bold">$29.99 USD</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-warning">Checkout</button>
+                        <button class="btn btn-outline-primary">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <img src="image2.jpg" alt="Image 6">
+                    <div class="card-body">
+                        <h5 class="card-title">SAVE $10</h5>
+                        <p class="card-text">Revitalizing Serum</p>
+                        <p class="text-muted">150 Reviews</p>
+                        <p class="fw-bold">$29.99 USD</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-warning">Checkout</button>
+                        <button class="btn btn-outline-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+
+
+        <div class="container my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="phix.png" class="img-fluid" alt="Placeholder Image">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="text-center p-2">Frequently Asked Questions</h2>
+
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item mb-2">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#answerOne" aria-expanded="true" aria-controls="answerOne">
+                                    What Is The Perfect Skincare Routine?
+                                </button>
+                            </h2>
+                            <div id="answerOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    A perfect skincare routine balances cleansing, toning, treating, and moisturizing.
+                                    Start with a gentle cleanser to remove impurities, follow with a toner like our Vita
+                                    C Mist to refine pores and balance pH, then apply a serum such as our [pH]iller
+                                    Peptide + Serum for targeted issues. Always finish with a moisturizer to hydrate and
+                                    protect your skin. Remember, consistency is key for the best results.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#answerTwo" aria-expanded="false" aria-controls="answerTwo">
+                                    How Can I Glow My Face Naturally?
+                                </button>
+                            </h2>
+                            <div id="answerTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#answerThree" aria-expanded="false" aria-controls="answerThree">
+                                    What Is The Best Treatment For Sensitive Skin?
+                                </button>
+                            </h2>
+                            <div id="answerThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    What Product Is Most Suitable For Sensitive Skin? </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="best-sellers" id="family">
+            <div class="text-center">
+                <h2 class="p-2">Join the [pH]ix Family</h2>
+            </div>
+
+            <div class="text-center">
+                <a href="#" class="social-icon">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-tiktok"></i>
+                </a>
+            </div>
+
+        </div>
+        <footer class="container-fluid p-5" id="row-8">
+            <div class="foot">
+                <div class="row">
+                    <div class="col-12 col-md-4 text-start">
+                        <div class="fs-1">the [pH]ix</div>
+                        <div class="p-2 mt-2">
+                            The [pH]ix curates inclusive, cruelty-free, vegan & 100% organic beauty/skincare products.
+                            Our launch product is a Vitamin C + Hyaluronic Acid primer. This anti-aging antioxidant
+                            complex will help smooth your complexion, provide a firming effect, and protect you from
+                            free radicals throughout the day.
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 text-center">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">[pH]ix Kits & Bundles</a></li>
+                            <li><a href="#">Our Products</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms Of Service</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Refund Policy</a></li>
+                            <li><a href="#">Do Not Sell My Personal Information</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-4 text-end">
+                        <div class="mb-3">
+                            <div class="fs-3">Get Your [pHix]</div>
+                            <div class="p-2">Subscribe to receive updates, access to exclusive deals, and more.</div>
+                            <div class="input-group">
+                                <input type="email" class="form-control border-0 rounded-0"
+                                    placeholder="Enter your email" required>
+                                <button class="btn btn-warning">Subscribe</button>
+                            </div>
+
+                        </div>
+
+                        <div>We Accept Cards</div>
+                        <div><img src="cards.png" class="img-fluid"></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+</body>
+
+</html>
